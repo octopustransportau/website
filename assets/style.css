@@ -1,0 +1,109 @@
+/* octopustransportau.website — static site styles (no external assets) */
+:root {
+  --bg: #ffffff;
+  --fg: #14161a;
+  --muted: #5a6472;
+  --line: #e3e7ed;
+  --card: #f7f9fc;
+  --accent: #1a56db;
+  --accent-soft: #eef3ff;
+  --radius: 12px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1116;
+    --fg: #e7eaef;
+    --muted: #98a2b1;
+    --line: #232a34;
+    --card: #141a21;
+    --accent: #7aa2ff;
+    --accent-soft: #16203a;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; min-height: 64px;
+}
+.brand {
+  font-weight: 650; font-size: 15px; letter-spacing: -.01em;
+  color: var(--fg); text-decoration: none;
+}
+nav { display: flex; gap: 18px; flex-wrap: wrap; }
+nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+nav a:hover, nav a[aria-current="page"] { color: var(--accent); }
+
+.hero { padding: 60px 0 6px; }
+.eyebrow {
+  margin: 0; font-size: 12px; font-weight: 650; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--accent);
+}
+h1 {
+  font-size: clamp(28px, 4.6vw, 42px); line-height: 1.15;
+  letter-spacing: -.022em; margin: .28em 0 .2em;
+}
+.lede { font-size: 18px; color: var(--muted); max-width: 62ch; margin: 0 0 8px; }
+
+section { padding: 32px 0; border-top: 1px solid var(--line); }
+main > section:first-of-type { border-top: 0; }
+h2 { font-size: 20px; letter-spacing: -.012em; margin: 0 0 12px; }
+h3 { font-size: 15.5px; margin: 22px 0 8px; }
+p { max-width: 68ch; }
+ul, ol { max-width: 68ch; padding-left: 22px; }
+li { margin: 6px 0; }
+
+table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 15px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th {
+  font-weight: 600; font-size: 12px; letter-spacing: .05em;
+  text-transform: uppercase; color: var(--muted);
+}
+td code { white-space: nowrap; }
+
+code {
+  background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+  padding: 1px 5px; font-size: .9em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 18px 20px; margin: 16px 0;
+}
+.card h3 { margin-top: 0; }
+.muted { color: var(--muted); }
+a { color: var(--accent); }
+
+dl.facts { margin: 16px 0 0; }
+dl.facts > div {
+  display: grid; grid-template-columns: 190px 1fr; gap: 12px;
+  padding: 10px 0; border-top: 1px solid var(--line);
+}
+dl.facts dt { color: var(--muted); font-size: 14px; }
+dl.facts dd { margin: 0; }
+@media (max-width: 560px) {
+  dl.facts > div { grid-template-columns: 1fr; gap: 2px; }
+}
+
+.site-footer {
+  border-top: 1px solid var(--line); margin-top: 20px;
+  padding: 26px 0 52px; color: var(--muted); font-size: 14px;
+}
+.site-footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.site-footer a { color: var(--muted); }
+.site-footer a:hover { color: var(--accent); }

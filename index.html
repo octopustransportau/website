@@ -1,1 +1,147 @@
-鸡 犬 过 双 桥 , 一 路 竹 叶 梅 花 。
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>octopustransportau.website — personal Google Drive client</title>
+<meta name="description" content="octopustransportau.website is a private, single-user application that connects its owner's own Google Drive account to a Linux workstation with rclone.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./">octopustransportau.website</a>
+    <nav>
+      <a href="./" aria-current="page">Overview</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Personal application · Google Drive</p>
+    <h1>octopustransportau.website</h1>
+    <p class="lede">
+      A private, single-user application that connects <strong>its owner's own Google Drive
+      account</strong> to a Linux workstation using <a href="https://rclone.org/" rel="noopener">rclone</a>.
+      It is not a public service: there is no sign-up, no multi-user front end, and no account
+      other than the owner's.
+    </p>
+  </section>
+
+  <section id="purpose">
+    <h2>What this application does</h2>
+    <p>
+      octopustransportau.website exists for one purpose: to let the owner work with the files in
+      their own Google Drive as if they were ordinary folders on their own computer. Concretely,
+      it lets the owner:
+    </p>
+    <ul>
+      <li>Mount their Google Drive as a local folder on their own Linux machine.</li>
+      <li>Browse folders and list files stored in that Drive account.</li>
+      <li>Download files from Drive and upload new or modified files back to Drive.</li>
+      <li>Keep a local cache so recently used files stay available when the network is slow.</li>
+    </ul>
+    <p class="muted">
+      Nothing is shared with other users, and no third party receives the owner's files.
+    </p>
+  </section>
+
+  <section id="how-it-works">
+    <h2>How it works</h2>
+    <ol>
+      <li>
+        The owner authorizes the application once, through Google's standard OAuth 2.0 consent
+        screen (installed/desktop application flow). Nothing is authorized until the owner
+        explicitly approves that screen.
+      </li>
+      <li>
+        The resulting refresh token is stored <strong>locally</strong> on the owner's machine, in
+        <code>~/.config/rclone/rclone.conf</code> (readable only by the owner).
+      </li>
+      <li>
+        rclone uses that token to call the Google Drive API directly and exposes the Drive
+        contents as a FUSE mount point on the same machine.
+      </li>
+    </ol>
+    <p>
+      There is no intermediary server or backend database. API requests travel directly from the
+      owner's workstation to Google. This website is static documentation only — it has no
+      analytics, no cookies, and no forms.
+    </p>
+  </section>
+
+  <section id="access">
+    <h2>Google API access</h2>
+    <p>
+      The application requests a single OAuth scope. It does not request access to Gmail,
+      Calendar, Contacts, Photos, or any other Google product.
+    </p>
+    <table>
+      <thead>
+        <tr><th>Scope</th><th>Why it is required</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>https://www.googleapis.com/auth/drive</code></td>
+          <td>
+            Read, create, modify and delete files in the owner's own Google Drive. Full read/write
+            access is required because the application mirrors a local folder tree to Drive: it
+            must be able to list directories, download file contents, and upload changed files.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted">
+      The scope is limited to the Drive account that the owner authorizes. The application does not
+      offer any way to access another person's Drive data.
+    </p>
+  </section>
+
+  <section id="data-handling">
+    <h2>Data handling at a glance</h2>
+    <dl class="facts">
+      <div><dt>Collected by this website</dt><dd>Nothing. No analytics, no cookies, no tracking pixels.</dd></div>
+      <div><dt>Stored by the application</dt><dd>OAuth token and a local file cache, on the owner's own disk only.</dd></div>
+      <div><dt>Shared with third parties</dt><dd>Never. The only external endpoint contacted is Google's API.</dd></div>
+      <div><dt>Used for advertising</dt><dd>No.</dd></div>
+      <div><dt>Revoking access</dt><dd><a href="https://myaccount.google.com/permissions" rel="noopener">myaccount.google.com/permissions</a></dd></div>
+    </dl>
+    <p>
+      The full details are in the <a href="privacy.html">Privacy Policy</a>. Use of information
+      received from Google APIs adheres to the
+      <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>,
+      including the Limited Use requirements.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Questions about this application, its scopes, or its data handling:<br>
+      <a href="mailto:octopustransportau@gmail.com">octopustransportau@gmail.com</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 octopustransportau.website — personal project</span>
+    <span>
+      <a href="privacy.html">Privacy</a> ·
+      <a href="terms.html">Terms</a> ·
+      Last updated 27 October 2026
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
